@@ -1,20 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";  // ✅ Ensure correct path
-import Cart from "./pages/Cart";  // ✅ Ensure correct path
-import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        {/* Handle 404 - Page Not Found */}
+        <Route path="*" element={<h1 className="text-center mt-10 text-2xl">404 - Page Not Found</h1>} />
+      </Routes>
+    </Router>
   );
 }
 
